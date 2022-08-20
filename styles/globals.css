@@ -1,72 +1,33 @@
-:root {
-  --sundown: rgba(248, 179, 179, 1);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Proxima Nova, system-ui, sans-serif;
+  }
+  body {
+    @apply text-[#000000] bg-[#313131] tracking-wide
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold
+  }
+
+  h1 {
+    @apply text-[#DAD2FF]
+  }
+
+  li {
+    @apply cursor-pointer
+  }
+
+  button {
+    @apply text-white shadow-md shadow-[#2d548f] rounded-3xl uppercase bg-gradient-to-r from-[#254575] to-[#254575] px-4 py-1
+  }
+  
+  .my-image {
+    @apply rounded-xl
+  }
 }
 
-.screen a {
-  display: contents;
-  text-decoration: none;
-}
-
-.container-center-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  pointer-events: none;
-  width: 100%;
-}
-
-.container-center-horizontal > * {
-  flex-shrink: 0;
-  pointer-events: auto;
-}
-
-.navbar {
-  align-items: flex-start;
-  background-color: #d9d9d9;
-  display: flex;
-  height: 91px;
-  padding: 17px 14px;
-  width: 1440px;
-}
-
-.ellipse-2 {
-  background-color: var(--sundown);
-  border-radius: 27px;
-  height: 54px;
-  margin-left: 3px;
-  width: 54px;
-}
-
-.rectangle-4 {
-  background-color: #979797;
-  height: 53px;
-  margin-left: 11px;
-  margin-top: 1px;
-  width: 458px;
-}
-
-.rectangle-3 {
-  background-color: #868686;
-  height: 53px;
-  margin-left: 431px;
-  margin-top: 2px;
-  width: 244px;
-}
-
-.ellipse-1 {
-  background-color: var(--sundown);
-  border-radius: 27px;
-  height: 54px;
-  margin-left: 13px;
-  margin-top: 1px;
-  width: 54px;
-}
-
-.rectangle-2 {
-  background-color: #f29393;
-  border-radius: 20px;
-  height: 53px;
-  margin-left: 20px;
-  margin-top: 2px;
-  width: 124px;
-}
