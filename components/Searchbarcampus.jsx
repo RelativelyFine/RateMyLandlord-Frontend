@@ -48,7 +48,7 @@ const Searchbar = () => {
                 type="text"
                 id="prof"
                 name="prof"
-                placeholder="Enter Your Campus"
+                placeholder="Enter Your Professor"
                 required
               />
               <span className="relative left-[54%] sm:left-[54%] md:left-[47%] lg:left-[44%]  ">

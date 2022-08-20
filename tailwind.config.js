@@ -18,6 +18,9 @@ module.exports = {
         rec2: "url('/Rectangle6.png')",
         rec3: "url('/Rectangle8.png')",
         nearyou: "url('/nearyou.png')",
+        amy: "url('/amy.svg')",
+        david: "url('/david.svg')",
+        matt: "url('/matt.svg')",
       },
       screens: {
         aboutmb: "767px",

@@ -35,7 +35,7 @@ const Navbar = () => {
                 HomePage
               </li>
             </Link>
-            <Link href="/">
+            <Link href="aboutPage">
               <li className="ml-10 text-sm hover:border-b font-bold transition transform hover:-translate-y-[2px] motion-reduce:transition-none motion-reduce:hover:transform-none text-white">
                 About Us
               </li>
@@ -45,7 +45,7 @@ const Navbar = () => {
                 Lordlist
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/housingList">
               <li className="ml-10 text-sm hover:border-b font-bold transition transform hover:-translate-y-[2px] motion-reduce:transition-none motion-reduce:hover:transform-none text-white">
                 Landlist
               </li>

@@ -1,4 +1,5 @@
 import React from "react";
+import Searchbar from "./Searchbar";
 const Homesplash = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const Homesplash = () => {
             properties listed
           </div>
         </div>
+        <Searchbar />
       </div>
     </>
   );
