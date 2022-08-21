@@ -33,6 +33,7 @@ module.exports = {
         threefive: "url('/35.svg')",
         fourfive: "url('/45.svg')",
         zerofive: "url('/05.svg')",
+        signup: "url('/signup.png')",
       },
       screens: {
         aboutmb: "767px",

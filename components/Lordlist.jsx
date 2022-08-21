@@ -107,7 +107,7 @@ const Ratemylandlord = (props) => {
   let data2 = data;
 
   const filterer = () => {
-    if (search == "") {
+    if (search == "" || typeof search === "undefined") {
       console.log("hi");
       data = data2;
     } else {

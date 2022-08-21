@@ -50,7 +50,7 @@ const Navbar = () => {
                 Landlist
               </li>
             </Link>
-            <Link href="/">
+            <Link href="/Signup">
               <li className="ml-10 text-sm pr-10 uppercase">
                 <button className="transition px-3 transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none font-bold bg-[#254575] text-white">
                   Log In
