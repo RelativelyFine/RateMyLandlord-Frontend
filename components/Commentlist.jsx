@@ -12,8 +12,23 @@ const fetcher = (url) =>
 const Commentlist = () => {
   const { data, error } = useSWR("http://127.0.0.1:5000/landlords", fetcher);
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (error) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">failed to load</div>
+      </>
+    );
+  }
+
+  if (!data) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">loading..</div>
+      </>
+    );
+  }
 
   return (
     <div>

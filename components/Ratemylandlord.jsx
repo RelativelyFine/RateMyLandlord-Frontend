@@ -72,8 +72,24 @@ const Ratemylandlord = () => {
     );
   });
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (error) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">failed to load</div>
+      </>
+    );
+  }
+
+  if (!data) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">loading..</div>
+      </>
+    );
+  }
+
   return (
     <div>
       <div className="flex bg-[#1B1B1B] w-full h-20"></div>
