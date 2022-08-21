@@ -1,16 +1,83 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Link from "next/link";
 import Commentlist from "./Commentlist";
 import Ratingoverview from "./Ratingoverview";
+import useSWR from "swr";
+import axios from "axios";
+
+const fetcher = (url) =>
+  axios
+    .get(url, {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
+    .then((response) => response.data);
 
 const Ratemylandlord = () => {
   const [reviewNum, setReviewNum] = useState(69);
   const [reviewScore, setReviewScore] = useState(3.3);
-  const [commentNum, setCommentNum] = useState(47);
+  const [commentData, setCommentData] = useState([]);
+  const [landlordName, setLandlordName] = useState("");
+
+  const { data, error } = useSWR("http://127.0.0.1:5000/landlords", fetcher);
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      setLandlordName(data[0].LandlordName);
+      let x = 0;
+      let xnum = 0;
+      for (var i of data[0].Reviews) {
+        xnum += 1;
+        x += i.Stars;
+      }
+      setReviewNum(xnum);
+      setCommentData(data[0].Reviews);
+
+      setReviewScore(x / Math.max(1, xnum) / 2);
+    }
+  }, [data]);
+
+  var renderedOutput = commentData.map((item, index) => {
+    if (item.Stars / 2 >= 4) {
+      var bg = (
+        <div className="grid place-content-center relative left-3 rounded-xl w-[8vh] h-[8vh] bg-[#72B280] text-[4vh]">
+          {(item.Stars / 2).toFixed(1)}
+        </div>
+      );
+    } else if (item.Stars / 2 >= 2.5) {
+      var bg = (
+        <div className="grid place-content-center relative left-3 rounded-xl w-[8vh] h-[8vh] bg-[#E8DB6E] text-[4vh]">
+          {(item.Stars / 2).toFixed(1)}
+        </div>
+      );
+    } else {
+      var bg = (
+        <div className="grid place-content-center relative left-3 rounded-xl w-[8vh] h-[8vh] bg-[#C87373] text-[4vh]">
+          {(item.Stars / 2).toFixed(1)}
+        </div>
+      );
+    }
+    return (
+      <div
+        key={index}
+        className="flex flex-row w-full min-h-[10vh] bg-white rounded-xl py-3 "
+      >
+        {bg}
+        <div className="flex flex-col relative left-8 text-[4vh] w-[87%] p-2">
+          <div className="text-2xl text-[#000000]">Address: {item.Address}</div>
+          <div className="text-xl text-[#000000af]">
+            &ldquo;{item.Body}&ldquo;
+          </div>
+        </div>
+      </div>
+    );
+  });
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
   return (
     <div>
       <div className="flex bg-[#1B1B1B] w-full h-20"></div>
-      <div className="flex bg-gradient-to-b from-[#1B1B1B] to-[#3C3C3C] w-full h-[70vh] flex-col">
+      <div className="flex bg-gradient-to-b from-[#1B1B1B] to-[#3C3C3C] w-full pb-10 flex-col">
         <div className="mx-[6vw]">
           <div className="flex text-[#828282] w-full text-5xl py-6">
             LandLord Rating
@@ -21,7 +88,9 @@ const Ratemylandlord = () => {
                 <div className="text-white text-5xl">{reviewScore}</div>
                 <div className="text-[#828282] text-2xl">/5</div>
               </div>
-              <div className="flex text-white text-6xl py-4">Brenna Farrel</div>
+              <div className="flex text-white text-6xl py-4">
+                {landlordName}
+              </div>
               <div className="flex text-white text-1xl text-[#ffffffbd] pb-4">
                 Rated by &nbsp;
                 <span className="underline">{reviewNum} tenants</span>
@@ -43,12 +112,11 @@ const Ratemylandlord = () => {
             </span>
             <div className="flex-grow border-t border-gray-400"></div>
           </div>
-          <div className="flex text-white w-full text-2xl py-6">
-            {commentNum} Tenent Comments
+          <div className="grid place-items-center gap-8 w-full px-[7vw]">
+            {renderedOutput}
           </div>
         </div>
       </div>
-      <Commentlist />
     </div>
   );
 };

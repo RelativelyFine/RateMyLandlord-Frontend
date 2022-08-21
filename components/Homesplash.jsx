@@ -1,6 +1,18 @@
 import React from "react";
-import Searchbar from "./Searchbar";
+import Lordlist from "./Lordlist";
+import { useRouter } from "next/router";
+
 const Homesplash = () => {
+  const router = useRouter();
+  const [lord, setLord] = React.useState("");
+  const handleChange = (event) => {
+    event.preventDefault();
+    router.push({
+      pathname: "/landlordRating",
+      query: { name: lord },
+    });
+  };
+
   return (
     <>
       <div className="flex bg-[#1B1B1B] w-full h-20"></div>
@@ -14,7 +26,34 @@ const Homesplash = () => {
             properties listed
           </div>
         </div>
-        <Searchbar />
+        <div className="flex relative top-[-5vh] justify-center flex-row">
+          <div className="flex justify-center flex-row">
+            <div className="p-4 bg-[#e7e7e7] grid place-items-center md:text-3xl xl:text-5xl rounded-l-3xl h-20 w-[20em] justify-self-center">
+              <div className="w-full pl-6">
+                <form onSubmit={handleChange}>
+                  <input
+                    className="relative top-0 max-w-[60%] outline-none text-grey bg-[#e7e7e7]"
+                    type="text"
+                    id="lord"
+                    name="lord"
+                    onChange={(event) => setLord(event.target.value)}
+                    value={lord}
+                    placeholder="Enter Your Landlord"
+                  />
+                  <span className="relative left-[54%] sm:left-[54%] md:left-[47%] lg:left-[44%]  ">
+                    <button
+                      className="text-5xl transition px-3 transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none font-bold bg-[#254575] shadow-none text-white"
+                      type="submit"
+                    >
+                      S
+                    </button>
+                  </span>
+                </form>
+              </div>
+            </div>
+            <div className="p-4 bg-[#254575] rounded-r-3xl h-20 w-[6em] justify-self-center"></div>
+          </div>
+        </div>
       </div>
     </>
   );

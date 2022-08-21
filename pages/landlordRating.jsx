@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
-import Ratemylandlord from "../components/Ratemylandlord";
+import Lordlist from "../components/Lordlist";
 import Footer from "../components/Footer";
+import { withRouter } from "next/router";
 
-export default function Home() {
+function Home({ router }) {
   return (
     <div>
       <Head>
@@ -12,9 +13,11 @@ export default function Home() {
         <meta name="The Contender for HT6" content="Created by a Webdev Team" />
         <link rel="icon" href="/assets/photos/logo.png" />
       </Head>
-      <Ratemylandlord />
+      <Lordlist name={router.query.name} />
       <Navbar />
       <Footer />
     </div>
   );
 }
+
+export default withRouter(Home);

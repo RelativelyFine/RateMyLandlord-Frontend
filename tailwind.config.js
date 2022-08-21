@@ -1,3 +1,5 @@
+const { AiTwotoneAccountBook } = require("react-icons/ai");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
@@ -21,6 +23,16 @@ module.exports = {
         amy: "url('/amy.svg')",
         david: "url('/david.svg')",
         matt: "url('/matt.svg')",
+        one: "url('/1.svg')",
+        two: "url('/2.svg')",
+        three: "url('/3.svg')",
+        four: "url('/4.svg')",
+        five: "url('/5.svg')",
+        onefive: "url('/15.svg')",
+        twofive: "url('/25.svg')",
+        threefive: "url('/35.svg')",
+        fourfive: "url('/45.svg')",
+        zerofive: "url('/05.svg')",
       },
       screens: {
         aboutmb: "767px",
