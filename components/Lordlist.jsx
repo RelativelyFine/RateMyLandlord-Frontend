@@ -4,6 +4,7 @@ import Commentlist from "./Commentlist";
 import Ratingoverview from "./Ratingoverview";
 import useSWR from "swr";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const fetcher = (url) =>
   axios
@@ -17,6 +18,15 @@ const Ratemylandlord = (props) => {
   const [search, setSearch] = useState(props.name);
   const [renderedOutput, setRenderedOutput] = useState([]);
   const { data, error } = useSWR("http://127.0.0.1:5000/landlords", fetcher);
+  const router = useRouter();
+
+  const handleChangeTwo = (event) => {
+    console.log("Lordname: " + event);
+    router.push({
+      pathname: "/landlordRatingPage",
+      query: { name: event },
+    });
+  };
   const reloadImages = () => {
     if (data) {
       setRenderedOutput(
@@ -51,9 +61,10 @@ const Ratemylandlord = (props) => {
             );
           }
           return (
-            <div
-              key={index}
-              className="flex flex-row w-full min-h-[10vh] bg-white rounded-xl py-3 "
+            <button
+              key={item.LandlordName}
+              onClick={(event) => handleChangeTwo(item.LandlordName)}
+              className="flex flex-row w-full min-h-[10vh] bg-white rounded-xl py-3 text-start"
             >
               {bg}
               <div className="flex flex-col relative left-8 text-[4vh] w-[87%] p-2">
@@ -70,7 +81,7 @@ const Ratemylandlord = (props) => {
                   &ldquo;
                 </div>
               </div>
-            </div>
+            </button>
           );
         })
       );
@@ -114,11 +125,10 @@ const Ratemylandlord = (props) => {
     );
   });
 
-  let data2 = data;
+  var data2 = data;
 
   const filterer = () => {
     if (search == "" || typeof search === "undefined") {
-      console.log("hi");
       data = data2;
     } else {
       var newData = data;
@@ -135,16 +145,13 @@ const Ratemylandlord = (props) => {
     event.preventDefault();
     setSearch(event.target.value);
     if (event.target.value == "") {
-      console.log("hi");
       data = data2;
     } else {
-      var newData = data;
-      newData = data.filter((item) =>
+      data = data2.filter((item) =>
         item.LandlordName.toUpperCase().includes(
           event.target.value.toUpperCase()
         )
       );
-      data = newData;
     }
     reloadImages();
     console.log(data);

@@ -22,12 +22,7 @@ const Navbar = () => {
   return (
     <div className="fixed w-full h-81 top-0 bg-[#363636e5]">
       <div className="flex justify-between items-center w-full h-full px-2 align-items 2xl:px-8 pl-8">
-        <Image
-          src="/../public/assets/photos/logo.png"
-          alt="/"
-          width="100%"
-          height="80"
-        />
+        <Image src="/logo.png" alt="/" width="80" height="80" />
         <div>
           <ul className="hidden md:flex">
             <Link href="/">
@@ -80,12 +75,7 @@ const Navbar = () => {
         >
           <div>
             <div className="flex w-full items-center justify-between">
-              <Image
-                src="/../public/assets/photos/logo.png"
-                alt="/"
-                width="100%"
-                height="80"
-              />
+              <Image src="/logo.png" alt="/" width="80" height="80" />
               <div
                 onClick={handleNav}
                 className="square-full shadow-lg shadow-grey-700 cursor-pointer"
@@ -103,20 +93,17 @@ const Navbar = () => {
               <Link href="/">
                 <li className="py-4 text-sm">HomePage</li>
               </Link>
-              <Link href="/">
+              <Link href="/aboutPage">
                 <li className="py-4 text-sm">About Us</li>
-              </Link>
-              <Link href="/">
-                <li className="py-4 text-sm">Portfolio</li>
               </Link>
               <Link href="landlordRating">
                 <li className="py-4 text-sm">Lordlist</li>
               </Link>
-              <Link href="/">
+              <Link href="/housingList">
                 <li className="py-4 text-sm">Landlist</li>
               </Link>
 
-              <Link href="/">
+              <Link href="/Signup">
                 <li className="py-4 text-sm">Log In</li>
               </Link>
             </ul>

@@ -12,7 +12,7 @@ const fetcher = (url) =>
     })
     .then((response) => response.data);
 
-const Ratemylandlord = () => {
+const Ratemylandlord = (props) => {
   const [reviewNum, setReviewNum] = useState(69);
   const [reviewScore, setReviewScore] = useState(3.3);
   const [commentData, setCommentData] = useState([]);
@@ -21,20 +21,43 @@ const Ratemylandlord = () => {
   const { data, error } = useSWR("http://127.0.0.1:5000/landlords", fetcher);
   useEffect(() => {
     if (data) {
-      console.log(data);
-      setLandlordName(data[0].LandlordName);
-      let x = 0;
-      let xnum = 0;
-      for (var i of data[0].Reviews) {
-        xnum += 1;
-        x += i.Stars;
-      }
-      setReviewNum(xnum);
-      setCommentData(data[0].Reviews);
+      for (var lord of data) {
+        if (lord.LandlordName === props.name) {
+          setLandlordName(lord.LandlordName);
+          console.log(lord.LandlordName);
+          console.log(lord.Reviews);
+          let x = 0;
+          let xnum = 0;
+          for (var i of lord.Reviews) {
+            xnum += 1;
+            x += i.Stars;
+          }
+          setReviewNum(xnum);
+          setCommentData(lord.Reviews);
 
-      setReviewScore(x / Math.max(1, xnum) / 2);
+          setReviewScore(x / Math.max(1, xnum) / 2);
+        }
+      }
     }
   }, [data]);
+
+  if (error) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">failed to load</div>
+      </>
+    );
+  }
+
+  if (!data) {
+    return (
+      <>
+        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
+        <div className="text-[20vh]">loading..</div>
+      </>
+    );
+  }
 
   var renderedOutput = commentData.map((item, index) => {
     if (item.Stars / 2 >= 4) {
@@ -71,24 +94,6 @@ const Ratemylandlord = () => {
       </div>
     );
   });
-
-  if (error) {
-    return (
-      <>
-        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
-        <div className="text-[20vh]">failed to load</div>
-      </>
-    );
-  }
-
-  if (!data) {
-    return (
-      <>
-        <div className="flex bg-[#1B1B1B] w-full h-20"></div>
-        <div className="text-[20vh]">loading..</div>
-      </>
-    );
-  }
 
   return (
     <div>

@@ -53,7 +53,7 @@ const About = () => {
             This project was created for HackThe6ix 2022
           </div>
           <div className=" text-white w-full text-2xl py-6 px-[5vw] text-[#828282]">
-            The inspiration for RateMyRental was the ongoing student housing
+            The inspiration for RateMyLandlord was the ongoing student housing
             crisis. Many students struggle to find housing each year and we hope
             our project can help alleviate some of the trouble. What makes us
             unique is our landlord rating system. The site has centralizex

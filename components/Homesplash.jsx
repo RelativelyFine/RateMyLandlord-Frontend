@@ -1,5 +1,4 @@
 import React from "react";
-import Lordlist from "./Lordlist";
 import { useRouter } from "next/router";
 
 const Homesplash = () => {

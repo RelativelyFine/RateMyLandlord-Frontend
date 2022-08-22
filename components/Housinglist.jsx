@@ -14,7 +14,6 @@ const Ratemylandlord = () => {
   const [navStatus, setNavStatus] = useState("Rating");
   const [navOrder, setNavOrder] = useState("Descending");
   const { data, error } = useSWR("http://127.0.0.1:5000/properties", fetcher);
-  const { data2, error2 } = useSWR("http://127.0.0.1:5000/properties", fetcher);
   const [renderedOutput, setRenderedOutput] = useState(() => {});
 
   const reloadImages = () => {
@@ -121,6 +120,8 @@ const Ratemylandlord = () => {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
+  var data2 = data;
+
   const sortby = () => {
     if (navOrder == "Descending") {
       if (navStatus == "Rating") {
@@ -180,11 +181,9 @@ const Ratemylandlord = () => {
     if (typeof event.target.value === "undefined") {
       data = data2;
     } else {
-      var newData = data;
-      newData = data.filter((item) =>
+      data = data2.filter((item) =>
         item.Campus.toUpperCase().includes(event.target.value.toUpperCase())
       );
-      data = newData;
     }
     reloadImages();
     console.log(data);

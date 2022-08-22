@@ -11,7 +11,7 @@ function Home({ router }) {
       <Head>
         <title>Rate My Landlord</title>
         <meta name="The Contender for HT6" content="Created by a Webdev Team" />
-        <link rel="icon" href="/assets/photos/logo.png" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <Lordlist name={router.query.name} />
       <Navbar />
